@@ -32,12 +32,10 @@
         .page-section.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Header dengan Padding Luas */
+        /* Header */
         header {
             background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80') center/cover;
-            color: white; 
-            padding: 110px 20px 110px; 
-            text-align: center;
+            color: white; padding: 110px 20px 110px; text-align: center;
         }
 
         .container { max-width: 1000px; margin: auto; padding: 30px 20px; }
@@ -52,19 +50,39 @@
         .maskot-img { width: 110px; height: 110px; border-radius: 50%; border: 4px solid white; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .maskot-text { flex: 1; min-width: 280px; text-align: center; }
 
-        /* Card Styles */
+        /* Card Umum */
         .card { background: white; padding: 35px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); margin-bottom: 25px; border: 1px solid #eef2f6; transition: 0.3s; }
         .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
         .card h3 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
         
-        .doc-section { margin-bottom: 25px; }
-        .doc-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; display: block; font-size: 1.1rem; }
+        /* Grid Khusus Tata Tertib (Desain Baru) */
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .rule-card { 
+            background: white; padding: 30px; border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eef2f6; 
+            border-top: 5px solid var(--secondary); transition: 0.3s; height: 100%;
+        }
+        .rule-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .rule-card.border-green { border-top-color: var(--success); }
+        .rule-card.border-orange { border-top-color: var(--accent); }
+        .rule-card.border-red { border-top-color: var(--danger); }
         
+        .rule-card h4 { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 1.1rem; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .rule-icon { font-size: 1.5rem; }
+
         ul { list-style: none; }
         li { margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; }
         li::before { content: "•"; position: absolute; left: 5px; color: var(--secondary); font-weight: bold; }
+        
+        /* Checkmark khusus untuk rules */
+        .rule-card li::before { content: "✓"; color: var(--secondary); font-size: 1.1rem; left: 0; }
+        .rule-card.border-green li::before { color: var(--success); }
+        .rule-card.border-orange li::before { color: var(--accent); }
+        .rule-card.border-red li::before { content: "⚠️"; font-size: 0.9rem; top: 3px; }
 
         .highlight { background: #fffbeb; padding: 2px 5px; border-radius: 4px; color: #b45309; font-weight: 600; }
+        .doc-section { margin-bottom: 25px; }
+        .doc-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; display: block; font-size: 1.1rem; }
 
         footer { background: #1e293b; color: white; text-align: center; padding: 50px 20px; margin-top: 40px; }
 
@@ -130,10 +148,10 @@
         <p>SD Kristen 04 Eben Haezer</p>
     </header>
     <div class="container">
-        <div class="card">
+        <div class="rules-grid">
             
-            <div class="doc-section">
-                <span class="doc-title">A. Jam Layanan Perpustakaan</span>
+            <div class="rule-card">
+                <h4><span class="rule-icon">⏰</span> A. Jam Layanan</h4>
                 <ul>
                     <li><strong>Senin – Jumat:</strong> 07.00 – 14.00 WIB.</li>
                     <li><strong>Waktu Istirahat:</strong> Layanan perpustakaan tetap buka selama jam istirahat siswa.</li>
@@ -141,8 +159,8 @@
                 </ul>
             </div>
             
-            <div class="doc-section">
-                <span class="doc-title">B. Ketentuan Pengunjung (Siswa, Guru, dan Staf)</span>
+            <div class="rule-card border-green">
+                <h4><span class="rule-icon">👥</span> B. Ketentuan Pengunjung</h4>
                 <ul>
                     <li><strong>Mengisi Daftar Hadir:</strong> Setiap pengunjung wajib mengisi buku kunjungan atau sistem presensi digital perpustakaan saat baru memasuki ruangan.</li>
                     <li><strong>Sepatu Dilepas:</strong> Saat duduk di karpet sepatu wajib dilepas dan ditaruh di rak sepatu yang ada di luar.</li>
@@ -153,8 +171,8 @@
                 </ul>
             </div>
             
-            <div class="doc-section">
-                <span class="doc-title">C. Aturan Peminjaman dan Pengembalian Buku</span>
+            <div class="rule-card border-orange">
+                <h4><span class="rule-icon">📚</span> C. Peminjaman Buku</h4>
                 <ul>
                     <li><strong>Syarat Peminjaman:</strong> Peminjam wajib terdaftar sebagai anggota perpustakaan dan menunjukkan Kartu Anggota Perpustakaan yang masih berlaku (tidak boleh meminjam menggunakan kartu orang lain).</li>
                     <li><strong>Batas Peminjaman:</strong> Siswa maksimal meminjam 2 (dua) eksemplar buku dalam satu kali transaksi peminjaman.</li>
@@ -165,9 +183,9 @@
                 </ul>
             </div>
             
-            <div class="doc-section">
-                <span class="doc-title">D. Sanksi Pelanggaran</span>
-                <p style="margin-bottom: 10px; font-size: 0.95rem; color: var(--text);">Untuk mendidik siswa bertanggung jawab, perpustakaan memberlakukan sanksi sebagai berikut:</p>
+            <div class="rule-card border-red">
+                <h4><span class="rule-icon">🚨</span> D. Sanksi Pelanggaran</h4>
+                <p style="margin-bottom: 15px; font-size: 0.9rem; color: #64748b; padding-left: 5px;">Untuk mendidik siswa bertanggung jawab, perpustakaan memberlakukan sanksi sebagai berikut:</p>
                 <ul>
                     <li><strong>Keterlambatan Pengembalian:</strong> Siswa yang terlambat mengembalikan buku akan dikenakan sanksi berupa teguran lisan, tidak diperkenankan meminjam buku selama jangka waktu tertentu (misal: 3 hari), atau sanksi edukatif (misal: merangkum isi buku).</li>
                     <li><strong>Buku Rusak (Ringan):</strong> Jika buku rusak ringan (sampul terlepas, lecek), peminjam wajib memperbaiki buku tersebut sebelum dikembalikan.</li>
