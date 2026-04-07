@@ -68,6 +68,13 @@
         .rule-card.border-purple { border-top-color: #9333ea; }
         .rule-card h4 { display: flex; align-items: center; gap: 10px; color: var(--primary); font-size: 1.1rem; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
         
+        /* E-book Cards */
+        .ebook-card { text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+        .ebook-img { width: 100%; height: 200px; background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border: 1px dashed #cbd5e1; }
+        .ebook-title { font-weight: 700; color: var(--primary); margin-bottom: 10px; display: block; }
+        .btn-read { background: var(--success); color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: block; margin-top: 15px; }
+        .btn-read:hover { background: #059669; transform: scale(1.02); }
+
         ul { list-style: none; }
         li { margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; }
         .rule-card li::before { content: "✓"; position: absolute; left: 0; color: var(--secondary); font-weight: bold; font-size: 1.1rem;}
@@ -79,13 +86,6 @@
         .highlight { background: #fffbeb; padding: 2px 5px; border-radius: 4px; color: #b45309; font-weight: 600; }
         .doc-section { margin-bottom: 25px; }
         .doc-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; display: block; font-size: 1.05rem; }
-        
-        /* E-book Cards */
-        .ebook-card { text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
-        .ebook-img { width: 100%; height: 200px; background: #f1f5f9; border-radius: 10px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border: 1px dashed #cbd5e1; }
-        .ebook-title { font-weight: 700; color: var(--primary); margin-bottom: 10px; display: block; }
-        .btn-read { background: var(--success); color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; display: block; margin-top: 15px; }
-        .btn-read:hover { background: #059669; transform: scale(1.02); }
 
         /* Tampilan Tabel Data */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
@@ -380,7 +380,7 @@
             <div class="rule-card ebook-card">
                 <div>
                     <div class="ebook-img">🦁</div>
-                    <span class="ebook-title">Ensiklopedia Hewan</span>
+                    <span class="ebook-title">Hewan</span>
                     <p style="font-size: 0.85rem; color: #64748b;">Mengenal habitat dan makanan hewan di seluruh dunia.</p>
                 </div>
                 <a href="#" target="_blank" class="btn-read">Baca Sekarang</a>
