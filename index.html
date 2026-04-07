@@ -78,14 +78,23 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         th { background-color: var(--primary); color: white; }
-        .badge-sisa { background: var(--accent); color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+        .badge-sisa { background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
+        .badge-terlambat { background: var(--danger); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4); animation: pulse 2s infinite; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
         /* Form Admin */
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;}
         .form-control { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; }
-        .btn-submit { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
-        .btn-delete { background: var(--danger); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; }
+        .btn-submit { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-submit:hover { background: #059669; }
+        .btn-delete { background: var(--danger); color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; transition: 0.3s; }
+        .btn-delete:hover { background: #b91c1c; }
 
         footer { background: #1e293b; color: white; text-align: center; padding: 50px 20px; margin-top: 40px; }
 
@@ -97,8 +106,8 @@
             .maskot-intro { margin-top: -45px; padding: 20px; }
             table, thead, tbody, th, td, tr { display: block; }
             th { display: none; }
-            td { position: relative; padding-left: 50%; border-bottom: 1px solid #eee; }
-            td::before { position: absolute; left: 10px; font-weight: bold; content: attr(data-label); }
+            td { position: relative; padding-left: 45%; border-bottom: 1px solid #eee; min-height: 40px; }
+            td::before { position: absolute; left: 10px; font-weight: bold; content: attr(data-label); color: var(--primary); }
         }
     </style>
 </head>
@@ -133,8 +142,8 @@
         </div>
 
         <div class="card" style="margin-top: 40px; border-top: 5px solid var(--accent);" id="papan-info">
-            <h3>📢 Informasi Peminjaman Buku</h3>
-            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Daftar teman-teman yang sedang meminjam buku. Mohon dikembalikan tepat waktu ya! (Nama akan hilang otomatis setelah 7 hari).</p>
+            <h3>📢 Papan Informasi Peminjaman</h3>
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Daftar teman-teman yang sedang meminjam buku. Mohon dikembalikan tepat waktu ya! <strong style="color: var(--danger);">Batas pinjam 7 Hari.</strong></p>
             <div style="overflow-x: auto;">
                 <table id="tabel-publik">
                     <thead>
@@ -143,7 +152,7 @@
                             <th>Kelas</th>
                             <th>Judul Buku</th>
                             <th>Tgl Pinjam</th>
-                            <th>Status</th>
+                            <th>Status Waktu</th>
                         </tr>
                     </thead>
                     <tbody id="tbody-publik">
@@ -275,22 +284,22 @@
                     <label>Judul Buku</label>
                     <input type="text" id="inputBuku" class="form-control" required placeholder="Contoh: Cerita Rakyat Nusantara">
                 </div>
-                <button type="submit" class="btn-submit">Simpan Data</button>
+                <button type="submit" class="btn-submit">Simpan Data Pinjam</button>
             </form>
         </div>
 
         <div class="card">
-            <h3>📂 Daftar Peminjaman Aktif</h3>
-            <p style="font-size: 0.85rem; color: #ef4444;">*Data akan otomatis terhapus dari sistem setelah 7 hari sejak tanggal input.</p>
-            <div style="overflow-x: auto;">
+            <h3>📂 Daftar Semua Peminjaman</h3>
+            <p style="font-size: 0.85rem; color: #ef4444;">*Data <strong>TIDAK AKAN</strong> terhapus otomatis meskipun sudah lewat 7 hari. Anda harus mengklik tombol "Dikembalikan" secara manual jika buku sudah diserahkan siswa.</p>
+            <div style="overflow-x: auto; margin-top: 15px;">
                 <table>
                     <thead>
                         <tr>
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Buku</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Aksi</th>
+                            <th>Tgl Pinjam</th>
+                            <th>Aksi Petugas</th>
                         </tr>
                     </thead>
                     <tbody id="tbody-admin">
@@ -319,16 +328,16 @@
 
     // FUNGSI LOGIN ADMIN
     function aksesAdmin() {
-        let password = prompt("Masukkan Password Admin:");
+        let password = prompt("Masukkan Password Admin (Petunjuk: admin123):");
         if (password === "admin123") {
             showPage('admin', document.getElementById('nav-admin'));
-            muatData(); // Muat tabel admin
+            muatData();
         } else if (password !== null) {
             alert("Password Salah! Akses Ditolak.");
         }
     }
 
-    // FUNGSI LOGIK SISTEM DATA (LOCAL STORAGE)
+    // FUNGSI SISTEM DATA
     const MAX_HARI = 7;
 
     function tambahData(event) {
@@ -337,8 +346,10 @@
         const kelas = document.getElementById('inputKelas').value;
         const buku = document.getElementById('inputBuku').value;
         
-        // Buat tanggal hari ini
+        // Simpan tanggal hari ini (jam dinolkan agar perhitungan akurat)
         const tglSekarang = new Date();
+        tglSekarang.setHours(0,0,0,0);
+
         const dataBaru = {
             id: Date.now(),
             nama: nama,
@@ -347,19 +358,17 @@
             tglPinjam: tglSekarang.toISOString()
         };
 
-        // Ambil data lama, tambah data baru, simpan kembali
         let dataPeminjam = JSON.parse(localStorage.getItem('dataPerpus')) || [];
         dataPeminjam.push(dataBaru);
         localStorage.setItem('dataPerpus', JSON.stringify(dataPeminjam));
 
-        // Bersihkan form
         document.getElementById('form-admin').reset();
         alert("Data berhasil ditambahkan!");
         muatData();
     }
 
     function hapusData(id) {
-        if(confirm("Apakah Anda yakin siswa ini sudah mengembalikan buku?")) {
+        if(confirm("Apakah buku ini sudah dikembalikan? Data akan dihapus dari daftar.")) {
             let dataPeminjam = JSON.parse(localStorage.getItem('dataPerpus')) || [];
             dataPeminjam = dataPeminjam.filter(data => data.id !== id);
             localStorage.setItem('dataPerpus', JSON.stringify(dataPeminjam));
@@ -371,66 +380,65 @@
         let dataPeminjam = JSON.parse(localStorage.getItem('dataPerpus')) || [];
         const tbodyPublik = document.getElementById('tbody-publik');
         const tbodyAdmin = document.getElementById('tbody-admin');
-        const sekarang = new Date();
-
-        // Array untuk menyimpan data yang masih valid (< 7 hari)
-        let dataValid = [];
+        
+        // Waktu saat ini (jam dinolkan untuk perhitungan selisih hari penuh)
+        const hariIni = new Date();
+        hariIni.setHours(0,0,0,0);
 
         tbodyPublik.innerHTML = '';
         tbodyAdmin.innerHTML = '';
 
         if(dataPeminjam.length === 0) {
-            tbodyPublik.innerHTML = '<tr><td colspan="5" style="text-align:center;">Belum ada data peminjaman.</td></tr>';
-            tbodyAdmin.innerHTML = '<tr><td colspan="5" style="text-align:center;">Belum ada data peminjaman.</td></tr>';
+            tbodyPublik.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">Hebat! Saat ini tidak ada buku yang sedang dipinjam (semua sudah kembali).</td></tr>';
+            tbodyAdmin.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">Daftar peminjaman kosong.</td></tr>';
             return;
         }
 
         dataPeminjam.forEach(data => {
             const tglPinjam = new Date(data.tglPinjam);
-            // Hitung selisih waktu dalam hari
-            const selisihWaktu = Math.abs(sekarang - tglPinjam);
-            const selisihHari = Math.ceil(selisihWaktu / (1000 * 60 * 60 * 24)) - 1; // -1 karena hari H dihitung 0
+            const tglTampil = tglPinjam.toLocaleDateString('id-ID');
 
-            // HANYA tampilkan yang belum lewat 7 hari
+            // Hitung selisih hari
+            const selisihWaktu = hariIni.getTime() - tglPinjam.getTime();
+            const selisihHari = Math.floor(selisihWaktu / (1000 * 3600 * 24)); 
+            
+            // Logika Status Waktu
+            let badgeHTML = "";
+            
             if (selisihHari <= MAX_HARI) {
-                dataValid.push(data);
-                
-                // Format tanggal untuk tampilan (DD/MM/YYYY)
-                const tglTampil = tglPinjam.toLocaleDateString('id-ID');
-                const sisaWaktu = MAX_HARI - selisihHari;
-                
-                // Baris untuk Publik (Profil)
-                tbodyPublik.innerHTML += `
-                    <tr>
-                        <td data-label="Nama">${data.nama}</td>
-                        <td data-label="Kelas">${data.kelas}</td>
-                        <td data-label="Buku">${data.buku}</td>
-                        <td data-label="Tgl Pinjam">${tglTampil}</td>
-                        <td data-label="Status"><span class="badge-sisa">Sisa ${sisaWaktu} Hari</span></td>
-                    </tr>
-                `;
-
-                // Baris untuk Admin
-                tbodyAdmin.innerHTML += `
-                    <tr>
-                        <td data-label="Nama">${data.nama}</td>
-                        <td data-label="Kelas">${data.kelas}</td>
-                        <td data-label="Buku">${data.buku}</td>
-                        <td data-label="Tgl Pinjam">${tglTampil}</td>
-                        <td data-label="Aksi"><button class="btn-delete" onclick="hapusData(${data.id})">Selesai/Hapus</button></td>
-                    </tr>
-                `;
+                let sisaWaktu = MAX_HARI - selisihHari;
+                if (sisaWaktu === 0) {
+                    badgeHTML = `<span class="badge-sisa" style="background: #eab308;">Hari Terakhir</span>`;
+                } else {
+                    badgeHTML = `<span class="badge-sisa">Sisa ${sisaWaktu} Hari</span>`;
+                }
+            } else {
+                let telatHari = selisihHari - MAX_HARI;
+                badgeHTML = `<span class="badge-terlambat">⚠️ Telat ${telatHari} Hari</span>`;
             }
+
+            // Tampilkan di Profil
+            tbodyPublik.innerHTML += `
+                <tr>
+                    <td data-label="Nama Siswa"><strong>${data.nama}</strong></td>
+                    <td data-label="Kelas">${data.kelas}</td>
+                    <td data-label="Judul Buku">${data.buku}</td>
+                    <td data-label="Tgl Pinjam">${tglTampil}</td>
+                    <td data-label="Status Waktu">${badgeHTML}</td>
+                </tr>
+            `;
+
+            // Tampilkan di Panel Admin
+            tbodyAdmin.innerHTML += `
+                <tr>
+                    <td data-label="Nama Siswa"><strong>${data.nama}</strong></td>
+                    <td data-label="Kelas">${data.kelas}</td>
+                    <td data-label="Buku">${data.buku}</td>
+                    <td data-label="Tgl Pinjam">${tglTampil}</td>
+                    <td data-label="Aksi Petugas"><button class="btn-delete" onclick="hapusData(${data.id})">✔ Dikembalikan</button></td>
+                </tr>
+            `;
         });
-
-        // Simpan kembali hanya data yang valid (otomatis menghapus yang > 7 hari)
-        localStorage.setItem('dataPerpus', JSON.stringify(dataValid));
-
-        // Jika setelah difilter ternyata kosong
-        if(dataValid.length === 0) {
-            tbodyPublik.innerHTML = '<tr><td colspan="5" style="text-align:center;">Semua buku telah dikembalikan.</td></tr>';
-            tbodyAdmin.innerHTML = '<tr><td colspan="5" style="text-align:center;">Semua buku telah dikembalikan.</td></tr>';
-        }
     }
 
     // Jalankan saat pertama kali website dibuka
