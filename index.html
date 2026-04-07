@@ -42,7 +42,7 @@
         .header-main h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Bayangan teks agar lebih elegan */
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -57,11 +57,9 @@
             background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(59, 130, 246, 0.7) 100%), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80') center/cover;
         }
         .bg-tatatertib {
-            /* Gradasi Oranye ke Kuning Hangat yang lebih menarik */
             background: linear-gradient(135deg, rgba(234, 88, 12, 0.85) 0%, rgba(245, 158, 11, 0.75) 100%), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80') center/cover;
         }
         .bg-keanggotaan {
-            /* Gradasi Hijau Zamrud */
             background: linear-gradient(135deg, rgba(4, 120, 87, 0.85) 0%, rgba(16, 185, 129, 0.75) 100%), url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80') center/cover;
         }
 
@@ -82,7 +80,7 @@
         .card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
         .card h3 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
         
-        /* Grid Khusus Tata Tertib */
+        /* Grid Khusus Aturan/SOP */
         .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .rule-card { 
             background: white; padding: 30px; border-radius: 15px; 
@@ -227,35 +225,84 @@
 
 <div id="keanggotaan" class="page-section">
     <header class="header-main bg-keanggotaan">
-        <h1>SOP Keanggotaan</h1>
-        <p>Informasi Pendaftaran Anggota Pelangi Pustaka</p>
+        <h1>Keanggotaan Perpustakaan</h1>
+        <p>SD Kristen 04 Eben Haezer</p>
     </header>
     <div class="container">
-        <div class="card">
-            <div class="doc-section">
-                <span class="doc-title">1. Syarat Pendaftaran</span>
+        <div class="rules-grid">
+
+            <div class="rule-card">
+                <h4><span class="rule-icon">🎯</span> 1 & 2. Pendahuluan</h4>
+                <span class="doc-title">1. Tujuan</span>
+                <p style="margin-bottom: 15px; font-size: 0.95rem; color: var(--text);">Sebagai acuan bagi petugas perpustakaan dan warga sekolah dalam proses pendaftaran, pengelolaan, dan penonaktifan keanggotaan perpustakaan guna mewujudkan ketertiban administrasi.</p>
+                
+                <span class="doc-title">2. Sasaran</span>
+                <p style="font-size: 0.95rem; color: var(--text);">Seluruh siswa, guru, dan staf/karyawan SD Kristen 04 Eben Haezer.</p>
+            </div>
+
+            <div class="rule-card border-green">
+                <h4><span class="rule-icon">📝</span> 3 & 4. Pendaftaran Anggota</h4>
+                <span class="doc-title">3. Syarat Pendaftaran</span>
+                <ul style="margin-bottom: 20px;">
+                    <li>Merupakan siswa aktif, guru, atau staf di SD Kristen 04 Eben Haezer.</li>
+                    <li>Mengisi formulir pendaftaran anggota yang disediakan oleh petugas perpustakaan.</li>
+                    <li>Menyerahkan pas foto terbaru ukuran 2x3 (sebanyak 2 lembar) atau melakukan sesi foto langsung oleh petugas.</li>
+                    <li><span class="highlight">Pendaftaran tidak dipungut biaya (Gratis).</span></li>
+                </ul>
+
+                <span class="doc-title">4. Prosedur Pendaftaran</span>
                 <ul>
-                    <li>Terbuka untuk Siswa aktif, Guru, dan Staf sekolah.</li>
-                    <li>Mengisi formulir & pas foto 2x3 (2 lembar).</li>
-                    <li class="highlight">Pendaftaran GRATIS (Tanpa biaya).</li>
+                    <li><strong>Verifikasi Data:</strong> Petugas perpustakaan memeriksa kelengkapan data dan mencocokannya dengan data kesiswaan atau kepegawaian sekolah.</li>
+                    <li><strong>Input Data:</strong> Petugas memasukkan data anggota ke dalam sistem buku induk perpustakaan atau aplikasi perpustakaan digital (jika ada).</li>
+                    <li><strong>Pencetakan Kartu:</strong> Petugas mencetak Kartu Anggota Perpustakaan.</li>
+                    <li><strong>Penyerahan Kartu:</strong> Kartu yang sudah diproses diserahkan kepada anggota.</li>
                 </ul>
             </div>
-            <div class="doc-section">
-                <span class="doc-title">2. Prosedur Pendaftaran</span>
+
+            <div class="rule-card border-orange">
+                <h4><span class="rule-icon">⚖️</span> 5 & 6. Hak & Kewajiban</h4>
+                <span class="doc-title">5. Masa Berlaku Keanggotaan</span>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>Siswa:</strong> Masa berlaku keanggotaan adalah selama yang bersangkutan masih berstatus sebagai siswa aktif di SD Kristen 04 Eben Haezer (dari kelas 1 hingga lulus kelas 6).</li>
+                    <li><strong>Guru/Staf:</strong> Selama masih bertugas di SD Kristen 04 Eben Haezer.</li>
+                </ul>
+
+                <span class="doc-title">6. Hak dan Kewajiban Anggota</span>
+                <p style="font-weight: 600; font-size: 0.95rem; margin-top: 10px; margin-bottom: 5px; color: var(--primary);">Hak Anggota:</p>
+                <ul style="margin-bottom: 15px;">
+                    <li>Mendapatkan Kartu Anggota Perpustakaan.</li>
+                    <li>Meminjam buku dan materi pustaka lainnya sesuai dengan ketentuan yang berlaku.</li>
+                    <li>Menggunakan fasilitas komputer atau area baca di dalam perpustakaan.</li>
+                    <li>Mengikuti kegiatan atau program yang diselenggarakan oleh perpustakaan (seperti lomba literasi, bedah buku, dll).</li>
+                </ul>
+
+                <p style="font-weight: 600; font-size: 0.95rem; margin-bottom: 5px; color: var(--primary);">Kewajiban Anggota:</p>
                 <ul>
-                    <li>Verifikasi data kesiswaan/kepegawaian.</li>
-                    <li>Input data ke sistem digital.</li>
-                    <li>Pencetakan dan penyerahan Kartu Anggota.</li>
+                    <li>Membawa Kartu Anggota setiap kali akan melakukan transaksi peminjaman atau pengembalian.</li>
+                    <li>Mematuhi seluruh tata tertib perpustakaan.</li>
+                    <li>Menjaga keawetan dan kebersihan kartu anggota (tidak boleh dicoret-coret atau dilaminating ulang tanpa izin).</li>
                 </ul>
             </div>
-            <div class="doc-section">
-                <span class="doc-title">3. Ketentuan Kartu</span>
+
+            <div class="rule-card border-red">
+                <h4><span class="rule-icon">💳</span> 7 & 8. Kartu Hilang & Penonaktifan</h4>
+                <span class="doc-title">7. Prosedur Kehilangan Kartu</span>
+                <ul style="margin-bottom: 20px;">
+                    <li>Anggota memberitahu kepada petugas.</li>
+                    <li>Sekolah dapat mengenakan biaya administrasi penggantian kartu (misal: Rp5.000,-) sebagai bentuk edukasi tanggung jawab.</li>
+                    <li>Petugas akan mencetak kartu pengganti dengan nomor anggota yang sama.</li>
+                </ul>
+
+                <span class="doc-title">8. Penonaktifan Keanggotaan</span>
+                <p style="margin-bottom: 10px; font-size: 0.95rem; color: var(--text);">Keanggotaan dinyatakan berakhir apabila:</p>
                 <ul>
-                    <li>Masa berlaku selama masih aktif di sekolah.</li>
-                    <li>Kartu hilang: Wajib lapor (Ganti cetak: Rp 5.000,-).</li>
-                    <li>Wajib Bebas Pustaka sebelum meninggalkan sekolah permanen.</li>
+                    <li>Siswa telah lulus dari kelas 6.</li>
+                    <li>Siswa, guru, atau staf pindah sekolah (mutasi).</li>
+                    <li>Peminjam melakukan pelanggaran berat terhadap tata tertib perpustakaan (berdasarkan keputusan Kepala Sekolah/Kepala Perpustakaan).</li>
+                    <li><strong>Syarat Bebas Pustaka:</strong> Sebelum meninggalkan sekolah secara permanen, setiap anggota wajib mengembalikan semua buku pinjaman dan menyelesaikan denda (jika ada) untuk mendapatkan Surat Keterangan Bebas Pustaka.</li>
                 </ul>
             </div>
+
         </div>
     </div>
 </div>
