@@ -466,8 +466,11 @@
 
     // FUNGSI LOGIN ADMIN
     function aksesAdmin() {
-        let password = prompt("Masukkan Password Admin (Petunjuk: admin123):");
-        if (password === "admin123") {
+        // Tulisan petunjuk sudah dihapus agar aman
+        let password = prompt("Masukkan Password Admin:");
+        
+        // Ganti tulisan "admin123" di bawah ini jika Anda ingin mengganti passwordnya
+        if (password === "pelangi2026") {
             showPage('admin', document.getElementById('nav-admin'));
         } else if (password !== null) {
             alert("Password Salah! Akses Ditolak.");
