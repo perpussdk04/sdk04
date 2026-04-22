@@ -91,8 +91,35 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         th { background-color: var(--primary); color: white; }
-        .badge-sisa { background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; white-space: nowrap; display: inline-block; }
-        .badge-terlambat { background: var(--danger); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4); animation: pulse 2s infinite; white-space: nowrap; display: inline-block; }
+        .badge-sisa { 
+    background: var(--accent); 
+    color: white; 
+    padding: 4px 10px; 
+    border-radius: 12px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    display: inline-block; 
+    white-space: nowrap; /* Mencegah teks turun baris */
+    width: max-content; /* Memaksa background mengikuti panjang teks */
+}
+
+.badge-terlambat { 
+    background: var(--danger); 
+    color: white; 
+    padding: 4px 10px; 
+    border-radius: 12px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4); 
+    animation: pulse 2s infinite; 
+    display: inline-block; 
+    white-space: nowrap; /* Mencegah teks turun baris */
+    width: max-content; /* Memaksa background mengikuti panjang teks */
+}
+/* Mencegah sel tabel terakhir (Status Waktu) terlipat */
+th:last-child, td:last-child {
+    white-space: nowrap;
+}
         
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
