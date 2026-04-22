@@ -151,6 +151,12 @@ th:last-child, td:last-child {
             td::before { position: absolute; left: 10px; font-weight: bold; content: attr(data-label); color: var(--primary); }
             .action-buttons { justify-content: flex-start; }
         }
+        /* Memaksa kolom ke-5 (Status Waktu) agar tidak terdesak */
+#tabel-publik th:nth-child(5), 
+#tabel-publik td:nth-child(5) {
+    min-width: 140px;
+    white-space: nowrap;
+}
     </style>
 </head>
 <body>
@@ -647,7 +653,7 @@ th:last-child, td:last-child {
                 }
             } else {
                 let telatHari = selisihHari - MAX_HARI;
-                badgeHTML = `<span class="badge-terlambat">⚠️ Telat ${telatHari} Hari</span>`;
+                badgeHTML = `<span class="badge-terlambat">⚠️&nbsp;Telat&nbsp;${telatHari}&nbsp;Hari</span>`;
             }
 
             tbodyPublik.innerHTML += `
