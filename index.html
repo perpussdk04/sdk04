@@ -91,8 +91,35 @@
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         th { background-color: var(--primary); color: white; }
-        .badge-sisa { background: var(--accent); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
-        .badge-terlambat { background: var(--danger); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4); animation: pulse 2s infinite; }
+        .badge-sisa { 
+    background: var(--accent); 
+    color: white; 
+    padding: 4px 10px; 
+    border-radius: 12px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    display: inline-block; 
+    white-space: nowrap; /* Mencegah teks turun baris */
+    width: max-content; /* Memaksa background mengikuti panjang teks */
+}
+
+.badge-terlambat { 
+    background: var(--danger); 
+    color: white; 
+    padding: 4px 10px; 
+    border-radius: 12px; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4); 
+    animation: pulse 2s infinite; 
+    display: inline-block; 
+    white-space: nowrap; /* Mencegah teks turun baris */
+    width: max-content; /* Memaksa background mengikuti panjang teks */
+}
+/* Mencegah sel tabel terakhir (Status Waktu) terlipat */
+th:last-child, td:last-child {
+    white-space: nowrap;
+}
         
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
@@ -123,6 +150,28 @@
             td { position: relative; padding-left: 45%; border-bottom: 1px solid #eee; min-height: 40px; }
             td::before { position: absolute; left: 10px; font-weight: bold; content: attr(data-label); color: var(--primary); }
             .action-buttons { justify-content: flex-start; }
+        }
+        /* Memaksa kolom ke-5 (Status Waktu) agar tidak terdesak */
+#tabel-publik th:nth-child(5), 
+#tabel-publik td:nth-child(5) {
+    min-width: 140px;
+    white-space: nowrap;
+}
+/* Batas Scroll Tabel */
+.table-container {
+            max-height: 400px; /* Anda bisa mengubah angka ini untuk mengatur tinggi maksimal tabel */
+            overflow-y: auto;
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        /* Mengunci Judul Tabel di Atas (Sticky Header) */
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -161,7 +210,7 @@
         <div class="card" style="margin-top: 40px; border-top: 5px solid var(--accent);" id="papan-info">
             <h3>📢 Papan Informasi Peminjaman</h3>
             <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Daftar teman-teman yang sedang meminjam buku. Mohon dikembalikan tepat waktu ya! <strong style="color: var(--danger);">Batas pinjam 7 Hari.</strong></p>
-            <div style="overflow-x: auto;">
+            <div class="table-container">
                 <table id="tabel-publik">
                     <thead>
                         <tr>
@@ -620,7 +669,7 @@
                 }
             } else {
                 let telatHari = selisihHari - MAX_HARI;
-                badgeHTML = `<span class="badge-terlambat">⚠️ Telat ${telatHari} Hari</span>`;
+                badgeHTML = `<span class="badge-terlambat">⚠️&nbsp;Telat&nbsp;${telatHari}&nbsp;Hari</span>`;
             }
 
             tbodyPublik.innerHTML += `
